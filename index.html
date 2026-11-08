@@ -172,7 +172,7 @@ html{scroll-behavior:smooth}
 /* topo com vídeo controlado pela rolagem */
 .hero{position:relative;height:420vh}
 .film-stage{background:#031417;justify-content:flex-start;padding:72px 16px 14px}
-#film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;z-index:0;background:#031417}
+#film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%;z-index:0;background:#031417;transform-origin:50% 60%;will-change:transform;-webkit-mask-image:radial-gradient(ellipse 80% 85% at 50% 55%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 80% 85% at 50% 55%,#000 62%,transparent 100%)}
 @media (max-aspect-ratio:1/1){#film{object-fit:contain;object-position:50% 62%}}
 .shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(3,20,23,.92) 0%,rgba(3,20,23,.55) 22%,rgba(3,20,23,0) 42%),linear-gradient(0deg,rgba(3,20,23,.75) 0%,rgba(3,20,23,0) 22%)}
 .film-stage .copy{z-index:3}
@@ -338,6 +338,8 @@ function onScroll(){
   const e=Math.min(1,prog/.2);
   copy.style.transform=`translateY(${-e*40}px)`;copy.style.opacity=(1-e).toFixed(3);
   copy.style.pointerEvents=e>.6?'none':'auto';
+  const z=Math.min(1,prog/.25),zz=z*z*(3-2*z);
+  v.style.transform=`translateY(${(1-zz)*16}vh) scale(${(.74+.26*zz).toFixed(3)})`;
   for(const c of caps){const on=prog>=+c.dataset.from&&prog<+c.dataset.to;c.classList.toggle('on',on)}
   const solto=prog>.55?'1':'0';if(hint.dataset.solto!==solto)hint.dataset.solto=solto;
 }
