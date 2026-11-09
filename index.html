@@ -187,6 +187,13 @@ html{scroll-behavior:smooth}
 .keycta.small span{padding:10px 20px;font-size:.98rem}
 .film-stage .hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:5;margin:0;width:max-content;max-width:92vw}
 [hidden]{display:none!important}
+@media (max-aspect-ratio:1/1){
+  .hero{height:330vh}
+  .caps{bottom:auto;top:clamp(96px,14vh,150px);left:20px;right:20px;max-width:none}
+  .caps p{width:auto;max-width:none;bottom:auto;top:0}
+  .caps b{font-size:clamp(1.7rem,8.4vw,2.4rem)}
+  .caps span{font-size:1.08rem}
+}
 </style>
 </head>
 <body>
@@ -209,9 +216,9 @@ html{scroll-behavior:smooth}
       </div>
     </div>
     <div class="caps" aria-live="polite">
-      <p class="cap1" data-from=".22" data-to=".48"><b>Por fora, só teclas.</b><span>É o que você vê todo dia.</span></p>
-      <p class="cap2" data-from=".5" data-to=".76"><b>Por dentro, cada peça tem uma função.</b><span>Teclas, interruptores, placa, circuito e base.</span></p>
-      <p class="cap3" data-from=".8" data-to="1.01"><b>No curso você aprende a usar cada tecla.</b><span>Sem medo, do jeito certo.</span><a class="keycta small" href="#vaga"><span>Quero minha vaga</span></a></p>
+      <p class="cap1" data-from=".18" data-to=".46"><b>Por fora, só teclas.</b><span>É o que você vê todo dia.</span></p>
+      <p class="cap2" data-from=".46" data-to=".74"><b>Por dentro, cada peça tem uma função.</b><span>Teclas, interruptores, placa, circuito e base.</span></p>
+      <p class="cap3" data-from=".74" data-to="1.01"><b>No curso você aprende a usar cada tecla.</b><span>Sem medo, do jeito certo.</span><a class="keycta small" href="#vaga"><span>Quero minha vaga</span></a></p>
     </div>
     <div class="hint" id="hint" data-solto="0">
       <span class="pill a">Role para baixo: o teclado se desmonta</span>
@@ -342,7 +349,7 @@ function onScroll(){
   copy.style.transform=`translateY(${-e*40}px)`;copy.style.opacity=(1-e).toFixed(3);
   copy.style.pointerEvents=e>.6?'none':'auto';
   const z=Math.min(1,prog/.25),zz=z*z*(3-2*z);
-  const mob=innerWidth<innerHeight,ty0=mob?4:16,s0=mob?.96:.74,s1=mob?1.04:1;
+  const mob=innerWidth<innerHeight,ty0=mob?4:16,s0=mob?.94:.74,s1=mob?.98:1;
   v.style.transform=`translateY(${(1-zz)*ty0}vh) scale(${(s0+(s1-s0)*zz).toFixed(3)})`;
   for(const c of caps){const on=prog>=+c.dataset.from&&prog<+c.dataset.to;c.classList.toggle('on',on)}
   const solto=prog>.55?'1':'0';if(hint.dataset.solto!==solto)hint.dataset.solto=solto;
